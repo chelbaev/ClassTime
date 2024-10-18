@@ -1,3 +1,5 @@
+#include <string>
+
 struct Time {
     private:
         int hours = 0;
@@ -7,7 +9,7 @@ struct Time {
         static unsigned count;
     public:
         Time(bool flag = true);
-        Time(int h, int m, int s, bool flag = true);
+        Time(int h, int m = 0, int s = 0, bool flag = true);
         ~Time();
         Time(const Time& t);
 
@@ -22,13 +24,21 @@ struct Time {
         int GetMinutes() const;
         int GetSeconds() const;
 
-        int ToSeconds();
+        int ToSeconds() const;
         Time Normalize ();
 
         Time& operator= (const Time& other);
         Time& operator += (int s);
         Time& operator -= (int s);
-        int operator == (const Time other);
+        Time& operator += (const Time& a);
+        Time& operator -= (const Time& a);
+        bool operator == (const Time& other);
+
+        friend std::ostream& operator<<(std::ostream& os, const Time& time);
 };
+
 Time operator+ (const Time& t, int s);
 Time operator- (const Time& t, int s);
+namespace TimeNameSpace {
+    std::string to_string(const Time& a);
+}
