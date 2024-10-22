@@ -1,6 +1,7 @@
 Запуск из папки со всеми файлами:
 
-cmake -S. bin
+cmake -S. bin //-DBUILD_TESTS=OFF для гугл тестов
+
 cmake --build bin
 
 Запуск main:
